@@ -14,6 +14,7 @@ public class Main {
 				new Funcionario("Matheus", "matheus@gmail.com", 3000.0),
 				new Funcionario("Jackson", "jack@gmail.com", 500.0),
 				new Funcionario("França", "frnc@gmail.com", 10000.0),
+				new Funcionario("Michael", "mjackson@gmail.com", 12999.9),
 				new Funcionario("Rafael", "rafa@gmail.com", 1550.0));
 		
 		//Ordenar alfabeticamente os emails dos funcionarios que estão acima do piso salarial
@@ -26,6 +27,14 @@ public class Main {
 				.collect(Collectors.toList());
 				
 		emails.forEach(System.out::println);
+		
+		//Soma dos salarios dos funcionarios que começam o seu nome com a letra M
+		double somaSalarial = listaFuncionarios.stream()
+				.filter(f -> f.getNome().toUpperCase().charAt(0) == 'M')
+				.map(f -> f.getSalario())
+				.reduce(0.0, (ft, f2) -> ft + f2);
+		
+		System.out.println("Soma: " + somaSalarial);
 	}
 
 }
